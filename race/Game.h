@@ -18,6 +18,10 @@ public:
 		std::cout << "inter your name\n";
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
+		full_time = 0;
+		score = 0;
+
+		move_vec = Object::mv::ZERO;
 	}
 public:
 	void menu()
