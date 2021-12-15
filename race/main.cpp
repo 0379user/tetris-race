@@ -5,7 +5,7 @@
 #include "Objects.h"
 #include "Game.h"
 
-//  game menu/setup/
+//  game menu/add setup setup/
 //  stack of objects
 //
 int main()
@@ -26,6 +26,7 @@ int main()
 		{
 			system("cls");
 			std::cout << "good bye my friend\n";
+			//add function exit
 			break;
 		}
 	}
