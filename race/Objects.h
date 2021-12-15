@@ -19,7 +19,7 @@ public:
 		ESC,
 		ZERO
 	};
-	Object(){}
+	Object(): live(0) {}
 	Object(int a, int b, bool l=false): x(a), y(b), live(l){}
 	virtual ~Object(){}
 public:

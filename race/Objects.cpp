@@ -40,6 +40,7 @@ void Car::move(Object::mv mov)
 
 Dask_info::Dask_info(std::string s)
 {
+	live = true;
 	x = 3;
 	y = 44;
 	name = s;
