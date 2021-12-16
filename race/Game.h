@@ -22,7 +22,6 @@ public:
 		std::cout << "\t\t\t";
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
-		//name
 	}
 public:
 	void menu()
