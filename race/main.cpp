@@ -5,9 +5,17 @@
 #include "Objects.h"
 #include "Game.h"
 
-//  game menu/add setup setup/
-//  stack of objects
+
+//task
 //
+// need add function size screen
+// other window.h
+//  
+//  game menu/add setup setup/ save function
+//  stack of objects
+// start and end game screen
+ 
+
 int main()
 {
 	Game game;

@@ -15,16 +15,18 @@ public:
 	{
 		objects.push_back(new Car());
 		start_time = std::chrono::high_resolution_clock::now();
+		///name
+		std::cout << "\n\n\n\n\n\n\n\n";
+		std::cout << "\t\t\t";
 		std::cout << "inter your name\n";
+		std::cout << "\t\t\t";
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
+		//name
 	}
 public:
 	void menu()
 	{
-		//
-	
-		
 		//status_game = Game::state::GAME_RUN;
 		//
 		system("cls");
@@ -41,10 +43,11 @@ public:
 				        	(val_menu > 2) ? 2 : val_menu;
 
 				system("cls");
-				std::cout << ((val_menu == 0) ? cursor : space) << " START GAME\n";
-				std::cout << ((val_menu == 1) ? cursor : space) << " SETUP\n";
-				std::cout << ((val_menu == 2) ? cursor : space) << " EXIT\n";
-				rend_screen = false;
+				std::cout << "\n\n\n\n\n\n\n\n";
+				std::cout << "\t\t\t"; std::cout << ((val_menu == 0) ? cursor : space) << " START GAME\n";
+				std::cout << "\t\t\t"; std::cout << ((val_menu == 1) ? cursor : space) << " SETUP\n";
+				std::cout << "\t\t\t"; std::cout << ((val_menu == 2) ? cursor : space) << " EXIT\n";
+				rend_screen = false; 
 				if (val_menu == 2 && move_vec== Object::mv::ENTER)
 				{ 
 					status_game = Game::state::EXIT;
@@ -92,12 +95,14 @@ private:
 			switch (_getch())
 			{
 			case 'a': move_vec = Object::mv::LEFT;  rend_screen = true; break;
-			case 'ô': move_vec = Object::mv::LEFT;  rend_screen = true; break;
+			case 228: move_vec = Object::mv::LEFT;  rend_screen = true; break;
 			case 'd': move_vec = Object::mv::RIGHT; rend_screen = true; break;
-			case 'â': move_vec = Object::mv::RIGHT; rend_screen = true; break;
+			case 162: move_vec = Object::mv::RIGHT; rend_screen = true; break;
 
 			case 'w': move_vec = Object::mv::UP; rend_screen = true; break;
+			case 230: move_vec = Object::mv::UP; rend_screen = true; break;
 			case 's': move_vec = Object::mv::DOWN; rend_screen = true; break;
+			case 235: move_vec = Object::mv::DOWN; rend_screen = true; break;
 
 			case 13: move_vec = Object::mv::ENTER; rend_screen = true; break;
 			case 27: move_vec = Object::mv::ESC; status_game = (status_game == Game::state::GAME_RUN) ? Game::state::MENU : Game::state::GAME_RUN;  rend_screen = true; break;

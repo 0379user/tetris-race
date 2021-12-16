@@ -3,10 +3,17 @@
 #include <string>
 #include <iostream>
 
-
+#include <windows.h>
 
 Window::Window()//work with file
 {
+	/// <summary>
+	/// /set console
+	/// </summary>
+	//HANDLE hWnd = GetStdHandle(STD_OUTPUT_HANDLE);
+	//COORD bufferSize = { 80, 50 };
+	//SetConsoleScreenBufferSize(wHnd, bufferSize);
+	//
 	std::ifstream SCREEN("screen.txt");
 	std::string str;
 	int h = 0;
