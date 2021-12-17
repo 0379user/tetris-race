@@ -10,11 +10,22 @@ class Car;
 class Game
 {
 public:
-	enum class state { GAME_RUN = 0, MENU, EXIT };
-	Game() :rend_screen(1), level(0), level_time(1.8) , status_game(Game::state::MENU)
+	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };
+	Game() : 
+		rend_screen(1),
+		level(0),
+		level_time(1.8) ,
+		status_game(Game::state::MENU)
 	{
-		objects.push_back(new Car());
+		objects.push_back(new Car()); // start position player
 		start_time = std::chrono::high_resolution_clock::now();
+
+		//logo
+		win.show_start_logo();
+		system("pause");
+		system("cls");
+		//logo
+
 		///name
 		std::cout << "\n\n\n\n\n\n\n\n";
 		std::cout << "\t\t\t";
@@ -22,12 +33,11 @@ public:
 		std::cout << "\t\t\t";
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
+		//name
 	}
 public:
 	void menu()
 	{
-		//status_game = Game::state::GAME_RUN;
-		//
 		system("cls");
 		int val_menu = 0;
 		std::string cursor = "--> ";
@@ -64,10 +74,7 @@ public:
 				}
 			}
 		}
-		//game
-		//setup
-		//exit;
-
+		
 	}
 	void run() 
 	{
@@ -82,11 +89,7 @@ public:
 		logic();
 		
 	}
-public:
-	std::vector<Object*> objects;//objects
-	bool rend_screen;
-private:
-	Window win;
+ private:
 	void input()
 	{
 		if (_kbhit())
@@ -139,7 +142,10 @@ private:
 	}
 public:
 	state status_game;
+	std::vector<Object*> objects; 
+	bool rend_screen;
 private:
+	Window win;
 	Object::mv move_vec;
 	float level_time;
 	float full_time;
