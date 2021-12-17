@@ -141,6 +141,11 @@ public:
 		}
 	}
 public:
+	void end_logo()
+	{
+		win.show_end_logo();
+	}
+public:
 	state status_game;
 	std::vector<Object*> objects; 
 	bool rend_screen;
