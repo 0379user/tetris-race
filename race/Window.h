@@ -19,6 +19,9 @@ public:
 	void show() const;
 	void init();
 	void modificate(std::vector<Object*> & objects);
+	void show_start_logo();
+	void show_gameover_logo();
+	void show_end_logo();
 public:
 	char win_arr[HEIGHT][WEIGHT];
 	char clean_arr[HEIGHT][WEIGHT];

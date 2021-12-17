@@ -7,17 +7,15 @@
 
 Window::Window()//work with file
 {
-	/// <summary>
-	/// /set console
-	/// </summary>
+	 
 	//HANDLE hWnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	//COORD bufferSize = { 80, 50 };
 	//SetConsoleScreenBufferSize(wHnd, bufferSize);
-	//
+	 
 	std::ifstream SCREEN("screen.txt");
 	std::string str;
 	int h = 0;
-	if (!SCREEN.is_open()){std::cout<<"errooooooooooooooooor";}
+	if (!SCREEN.is_open()){std::cout<<"error, file screen.txt is not opened";}
 
 	while (getline(SCREEN, str))
 	{
@@ -68,5 +66,23 @@ void Window::modificate(std::vector<Object*>  & objects)
 		}
 	}
 	  
+}
+
+void Window::show_start_logo()
+{
+	std::cout << "\n\n\n\n\n\n\t\t\t\t";
+	std::cout << "show_start_logo\n";
+}
+
+void Window::show_gameover_logo()
+{
+	std::cout << "\n\n\n\n\n\n\t\t\t\t";
+	std::cout << "show_gameover_logo\n";
+}
+
+void Window::show_end_logo()
+{
+	std::cout << "\n\n\n\n\n\n\t\t\t\t";
+	std::cout << "show_end_logo\n";
 }
 
