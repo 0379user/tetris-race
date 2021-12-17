@@ -6,11 +6,10 @@ class Window;
 class Object;
 class Car;
 
-//
+
 class Game
 {
 public:
-	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };
 	Game() : 
 		rend_screen(1),
 		level(0),
@@ -89,7 +88,14 @@ public:
 		logic();
 		
 	}
- private:
+ public:
+	void game_over()
+	{ win.show_gameover_logo(); }
+	void end_logo()
+	{
+		win.show_end_logo();
+	}
+private:
 	void input()
 	{
 		if (_kbhit())
@@ -109,7 +115,7 @@ public:
 			case 13: move_vec = Object::mv::ENTER; rend_screen = true; break;
 			case 27: move_vec = Object::mv::ESC; status_game = (status_game == Game::state::GAME_RUN) ? Game::state::MENU : Game::state::GAME_RUN;  rend_screen = true; break;
 
-			case ' ': status_game=Game::state::EXIT; break;
+			case ' ': status_game = Game::state::EXIT; break;
 			default:move_vec = Object::mv::ZERO;
 				break;
 			}
@@ -118,11 +124,11 @@ public:
 				objects[0]->move(move_vec);
 			}
 		}
-		
+
 	}
 	void logic()
 	{
-		end_time= std::chrono::high_resolution_clock::now();
+		end_time = std::chrono::high_resolution_clock::now();
 		result_time = end_time - start_time;
 		full_time = result_time.count();
 		if (full_time > level_time)
@@ -135,29 +141,26 @@ public:
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
 
-		if (full_time > 1.0) 
+		if (full_time > 1.0)
 		{
 			//score++;
 		}
 	}
 public:
-	void end_logo()
-	{
-		win.show_end_logo();
-	}
-public:
+	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };
 	state status_game;
 	std::vector<Object*> objects; 
 	bool rend_screen;
 private:
 	Window win;
 	Object::mv move_vec;
+
 	float level_time;
 	float full_time;
 	int level;
 	int score;
 	std::string name;
-private:
+
 	std::chrono::steady_clock::time_point start_time, end_time; // from lib mytimer
 	std::chrono::duration<float> result_time;
 };

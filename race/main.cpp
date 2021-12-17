@@ -37,6 +37,13 @@ int main()
 			game.end_logo();
 			break;
 		}
+		if (game.status_game == Game::state::GAME_OVER)
+		{
+			system("cls");
+			game.game_over();
+			game.status_game = Game::state::MENU;
+			break;
+		}
 
 	}
 	system("pause");
