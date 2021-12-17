@@ -34,9 +34,10 @@ int main()
 		{
 			system("cls");
 			std::cout << "good bye my friend\n";
-			//add function exit
+			game.end_logo();
 			break;
 		}
+
 	}
 	system("pause");
 	return 0;
