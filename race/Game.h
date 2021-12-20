@@ -13,7 +13,7 @@ public:
 	Game() : 
 		rend_screen(1),
 		level(0),
-		level_time(1.8) ,
+		level_time(1.8),
 		status_game(Game::state::MENU)
 	{
 		objects.push_back(new Car()); // start position player
@@ -33,6 +33,10 @@ public:
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
 		//name
+		//game events
+		objects.push_back(new Car());
+		objects.push_back(new Car());
+		objects.push_back(new Car());
 	}
 public:
 	void menu()

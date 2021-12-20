@@ -7,12 +7,12 @@
 
 
 //task
-//
-// need add function size screen
-// other window.h
-//  
+//stack of objects
+// 
+// 
+//  other window.h
 //  game menu/add setup setup/ save function
-//  stack of objects
+//  need add function size screen
 // start and end game screen
  
 
