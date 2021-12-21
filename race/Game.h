@@ -33,10 +33,10 @@ public:
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
 		//name
-		//game events
-		objects.push_back(new Car());
-		objects.push_back(new Car());
-		objects.push_back(new Car());
+		//game objects
+		objects.push_back(new Car(2,3,1));
+		objects.push_back(new Car(2,16,1));
+		objects.push_back(new Car(2,26,1));
 	}
 public:
 	void menu()
@@ -141,6 +141,7 @@ private:
 			rend_screen = true;
 			score++;
 			level = score / 3;
+			move_objects();
 		}
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
@@ -149,6 +150,18 @@ private:
 		{
 			//score++;
 		}
+	}
+	void move_objects()
+	{
+		
+		for(auto it=(objects.begin())+2; it!=objects.end(); ++it)
+		{ 
+			if(((Car*)*it)->is_live())
+			{
+				((Car*)*it)->move(Object::mv::DOWN);
+			}
+		}
+	
 	}
 public:
 	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };

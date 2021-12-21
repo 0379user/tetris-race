@@ -33,7 +33,6 @@ int main()
 		if (game.status_game == Game::state::EXIT)
 		{
 			system("cls");
-			std::cout << "good bye my friend\n";
 			game.end_logo();
 			break;
 		}
