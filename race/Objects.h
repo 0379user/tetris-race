@@ -45,7 +45,6 @@ public:
 class Dask_info : public Object
 {
 public:
-	
 	Dask_info(std::string s);  
 public:
 	void create(Window* w)  override;

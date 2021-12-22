@@ -36,6 +36,17 @@ void Car::move(Object::mv mov)
 			y++;
 		}
 	}
+	if (mov == Object::mv::DOWN)
+	{
+		if (x + 1 == HEIGHT) 
+		{
+			live = false;
+		}
+		else
+		{
+			x++;
+		}
+	}
 }
 
 Dask_info::Dask_info(std::string s)

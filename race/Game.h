@@ -13,7 +13,7 @@ public:
 	Game() : 
 		rend_screen(1),
 		level(0),
-		level_time(1.8) ,
+		level_time(1.8),
 		status_game(Game::state::MENU)
 	{
 		objects.push_back(new Car()); // start position player
@@ -33,6 +33,10 @@ public:
 		std::cin >> name;
 		objects.push_back(new Dask_info(name));
 		//name
+		//game objects
+		objects.push_back(new Car(2,3,1));
+		objects.push_back(new Car(2,16,1));
+		objects.push_back(new Car(2,26,1));
 	}
 public:
 	void menu()
@@ -136,7 +140,7 @@ private:
 			start_time = end_time;
 			rend_screen = true;
 			score++;
-			level = score / 3;//
+			level = score / 3;
 		}
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
@@ -145,6 +149,18 @@ private:
 		{
 			//score++;
 		}
+	}
+	void move_objects()
+	{
+		
+		for(auto it=(objects.begin())+2; it!=objects.end(); ++it)
+		{ 
+			if(((Car*)*it)->is_live())
+			{
+				((Car*)*it)->move(Object::mv::DOWN);
+			}
+		}
+	
 	}
 public:
 	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };
