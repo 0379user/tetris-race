@@ -26,3 +26,4 @@ public:
 	char win_arr[HEIGHT][WEIGHT];
 	char clean_arr[HEIGHT][WEIGHT];
 };
+

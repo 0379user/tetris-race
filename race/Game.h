@@ -136,7 +136,7 @@ private:
 			start_time = end_time;
 			rend_screen = true;
 			score++;
-			level = score / 3;
+			level = score / 3;//
 		}
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
