@@ -14,7 +14,7 @@
 //  game menu/add setup setup/ save function
 //  need add function size screen
 // start and end game screen
- 
+ //
 
 int main()
 {
