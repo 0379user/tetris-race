@@ -125,6 +125,11 @@ private:
 			}
 			if (status_game == Game::state::GAME_RUN)
 			{
+				//fixed bag 
+				if(move_vec==Object::mv::DOWN)
+				{
+					move_vec = Object::mv::ZERO;
+				}
 				objects[0]->move(move_vec);
 			}
 		}
@@ -149,6 +154,21 @@ private:
 		if (full_time > 1.0)
 		{
 			//score++;
+		}
+	}
+private:
+	void exam_colision() 
+	{
+
+		for (auto it = (objects.begin()) + 2; it != objects.end(); ++it)
+		{
+			if (((Car*)*it)->is_live())
+			{
+				if(((Car*)*it)->x == objects[0]->x && ((Car*)*it)->y == objects[0]->y)
+				{
+					status_game = Game::state::GAME_OVER;
+				}
+			}
 		}
 	}
 	void move_objects()
