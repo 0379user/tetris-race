@@ -34,9 +34,9 @@ public:
 		objects.push_back(new Dask_info(name));
 		//name
 		//game objects
-		objects.push_back(new Car(2,3,1));
-		objects.push_back(new Car(2,16,1));
-		objects.push_back(new Car(2,26,1));
+		objects.push_back(new Car(1,3,1));
+		objects.push_back(new Car(1,16,1));
+		objects.push_back(new Car(1,26,1));
 	}
 public:
 	void menu()
@@ -130,6 +130,21 @@ private:
 		}
 
 	}
+	void move_crash()
+	{
+		for (auto it = (objects.begin()) + 2; it != objects.end(); ++it)
+		{
+			if (((Car*)*it)->is_live())
+			{ //ебаная проверка на столкновения 
+				if((objects[0]->x == ((Car*)*it)->x || objects[0]->x == ((Car*)*it)->x+1|| objects[0]->x == ((Car*)*it)->x + 2)
+					&& (objects[0]->y == ((Car*)*it)->y|| objects[0]->y == ((Car*)*it)->y-1|| objects[0]->y == ((Car*)*it)->y+1))
+				{ 
+					status_game = Game::state::EXIT;
+				}
+
+			}
+		}
+	}
 	void logic()
 	{
 		end_time = std::chrono::high_resolution_clock::now();
@@ -141,6 +156,7 @@ private:
 			rend_screen = true;
 			score++;
 			level = score / 3;
+			move_objects();
 		}
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
@@ -160,7 +176,7 @@ private:
 				((Car*)*it)->move(Object::mv::DOWN);
 			}
 		}
-	
+		move_crash();
 	}
 public:
 	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };

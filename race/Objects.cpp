@@ -38,7 +38,7 @@ void Car::move(Object::mv mov)
 	}
 	if (mov == Object::mv::DOWN)
 	{
-		if (x + 1 == HEIGHT) 
+		if (x + 3 == HEIGHT) 
 		{
 			live = false;
 		}
