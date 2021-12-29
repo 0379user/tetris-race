@@ -14,6 +14,7 @@ public:
 		rend_screen(1),
 		level(0),
 		level_time(1.8),
+		alive_objects(0),
 		status_game(Game::state::MENU)
 	{
 		objects.push_back(new Car()); // start position player
@@ -34,9 +35,14 @@ public:
 		objects.push_back(new Dask_info(name));
 		//name
 		//game objects
-		objects.push_back(new Car(1,3,1));
-		objects.push_back(new Car(1,16,1));
-		objects.push_back(new Car(1,26,1));
+		objects.push_back(new Car(1,3,0));
+		objects.push_back(new Car(1,16,0));
+		objects.push_back(new Car(1,26,0));
+		objects.push_back(new Car(1, 26, 0));
+		objects.push_back(new Car(1, 26, 0));
+		objects.push_back(new Car(1, 26, 0));
+		objects.push_back(new Car(1, 26, 0));
+		objects.push_back(new Car(1, 26, 0));
 	}
 public:
 	void menu()
@@ -145,6 +151,23 @@ private:
 			}
 		}
 	}
+	void stack_objects()
+	{
+		if (alive_objects < level * 2)
+		{
+			for (auto it = (objects.begin()) + 2; it != objects.end(); ++it)
+			{
+				 if (!((Car*)*it)->is_live())
+				 { 
+					 ((Car*)*it)->y = rand() % WEIGHT_GAME_SCREEN_END;
+					 ((Car*)*it)->x = 1;
+					 ((Car*)*it)->live = true;
+					 break;
+				 }
+			}
+		}
+
+	}
 	void logic()
 	{
 		end_time = std::chrono::high_resolution_clock::now();
@@ -156,7 +179,8 @@ private:
 			rend_screen = true;
 			score++;
 			level = score / 3;
-			move_objects();
+			move_objects(); 
+			stack_objects(); // need after  move_objects();  funct
 		}
 		static_cast<Dask_info*>(objects[1])->level = level;
 		static_cast<Dask_info*>(objects[1])->score = score;
@@ -174,6 +198,10 @@ private:
 			if(((Car*)*it)->is_live())
 			{
 				((Car*)*it)->move(Object::mv::DOWN);
+				alive_objects++;
+			}
+			else {
+				alive_objects = (alive_objects < 0) ? 0 : --alive_objects;
 			}
 		}
 		move_crash();
@@ -191,6 +219,7 @@ private:
 	float full_time;
 	int level;
 	int score;
+	int alive_objects;
 	std::string name;
 
 	std::chrono::steady_clock::time_point start_time, end_time; // from lib mytimer
