@@ -18,6 +18,7 @@
 
 int main()
 {
+	Core::setConsole();
 	Game game;
 	
 	while (true) 

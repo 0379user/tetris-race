@@ -4,12 +4,18 @@
 #include "Objects.h"
 
 #define WEIGHT 80
-#define HEIGHT 24
+#define HEIGHT 25
 
 #define WEIGHT_GAME_SCREEN_BEGIN 1
 #define WEIGHT_GAME_SCREEN_END 30
 //
 class Object;
+
+
+namespace Core
+{
+	void setConsole();
+}
 
 class Window
 {

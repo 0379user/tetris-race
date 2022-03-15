@@ -207,7 +207,13 @@ private:
 		move_crash();
 	}
 public:
-	enum class state { GAME_RUN = 0, MENU, EXIT, GAME_OVER };
+	enum class state
+	{ GAME_RUN = 0,
+		MENU, 
+		EXIT, 
+		GAME_OVER 
+	};
+
 	state status_game;
 	std::vector<Object*> objects; 
 	bool rend_screen;

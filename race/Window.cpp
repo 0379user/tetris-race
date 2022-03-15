@@ -5,13 +5,22 @@
 
 #include <windows.h>
 
+
+
+namespace Core
+{
+	void setConsole()
+	{
+		HANDLE hWnd = GetStdHandle(STD_OUTPUT_HANDLE);
+		COORD bufferSize = { WEIGHT, HEIGHT };
+		SetConsoleScreenBufferSize(hWnd, bufferSize);
+		HWND hWindowConsole = GetConsoleWindow();
+		MoveWindow(hWindowConsole, 80, 80, 10 * WEIGHT, 14 * HEIGHT, true);
+	}
+}
+
 Window::Window()//work with file
 {
-	 
-	//HANDLE hWnd = GetStdHandle(STD_OUTPUT_HANDLE);
-	//COORD bufferSize = { 80, 50 };
-	//SetConsoleScreenBufferSize(wHnd, bufferSize);
-	 
 	std::ifstream SCREEN("screen.txt");
 	std::string str;
 	int h = 0;
