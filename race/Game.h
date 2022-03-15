@@ -10,7 +10,7 @@ class Car;
 class Game
 {
 public:
-	Game() : 
+	Game() :
 		rend_screen(1),
 		level(0),
 		level_time(1.8),
@@ -35,16 +35,30 @@ public:
 		objects.push_back(new Dask_info(name));
 		//name
 		//game objects
-		objects.push_back(new Car(1,3,0));
-		objects.push_back(new Car(1,16,0));
-		objects.push_back(new Car(1,26,0));
+		objects.push_back(new Car(1, 3, 0));
+		objects.push_back(new Car(1, 16, 0));
+		objects.push_back(new Car(1, 26, 0));
 		objects.push_back(new Car(1, 26, 0));
 		objects.push_back(new Car(1, 26, 0));
 		objects.push_back(new Car(1, 26, 0));
 		objects.push_back(new Car(1, 26, 0));
 		objects.push_back(new Car(1, 26, 0));
 	}
+
 public:
+	void run() 
+	{
+		if(rend_screen)
+		{
+			win.init();
+			win.modificate(objects);
+			win.show();
+			rend_screen = 0;
+		}
+		input();
+		logic();
+		
+	}
 	void menu()
 	{
 		system("cls");
@@ -55,19 +69,19 @@ public:
 			input();
 			if (rend_screen) {
 				val_menu = (move_vec == Object::mv::DOWN) ? ++val_menu :
-					       (move_vec == Object::mv::UP)   ? --val_menu :
-					       (move_vec == Object::mv::ENTER)? val_menu   : val_menu;
-				val_menu =  (val_menu < 0) ? 0 :
-				        	(val_menu > 2) ? 2 : val_menu;
+					(move_vec == Object::mv::UP) ? --val_menu :
+					(move_vec == Object::mv::ENTER) ? val_menu : val_menu;
+				val_menu = (val_menu < 0) ? 0 :
+					(val_menu > 2) ? 2 : val_menu;
 
 				system("cls");
 				std::cout << "\n\n\n\n\n\n\n\n";
 				std::cout << "\t\t\t"; std::cout << ((val_menu == 0) ? cursor : space) << " START GAME\n";
 				std::cout << "\t\t\t"; std::cout << ((val_menu == 1) ? cursor : space) << " SETUP\n";
 				std::cout << "\t\t\t"; std::cout << ((val_menu == 2) ? cursor : space) << " EXIT\n";
-				rend_screen = false; 
-				if (val_menu == 2 && move_vec== Object::mv::ENTER)
-				{ 
+				rend_screen = false;
+				if (val_menu == 2 && move_vec == Object::mv::ENTER)
+				{
 					status_game = Game::state::EXIT;
 					break;
 				}
@@ -83,20 +97,7 @@ public:
 				}
 			}
 		}
-		
-	}
-	void run() 
-	{
-		if(rend_screen)
-		{
-			win.init();
-			win.modificate(objects);
-			win.show();
-			rend_screen = 0;
-		}
-		input();
-		logic();
-		
+
 	}
  public:
 	void game_over()
@@ -227,7 +228,7 @@ private:
 	int score;
 	int alive_objects;
 	std::string name;
-
+	//time
 	std::chrono::steady_clock::time_point start_time, end_time; // from lib mytimer
 	std::chrono::duration<float> result_time;
 };
