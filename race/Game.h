@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "Objects.h"
+#include "Game.h"
 
 class Window;
 class Object;
@@ -11,6 +12,7 @@ class Car;
 class Game
 {
 public:
+	Game(const Game&) = delete;
 	Game() :
 		rend_screen(1),
 		level(0),
@@ -217,12 +219,13 @@ public:
 	};
 
 	state status_game;
-	std::vector<Object*> objects; 
+	std::vector<Object*> objects; //// rendering 
 	bool rend_screen;
 private:
+	//objects 
 	Window win;
-	Object::mv move_vec;
-
+	Object::mv move_vec; // bed name
+	//Input input;
 	float level_time;
 	float full_time;
 	int level;
