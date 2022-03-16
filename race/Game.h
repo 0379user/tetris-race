@@ -5,6 +5,7 @@
 class Window;
 class Object;
 class Car;
+//class Input;
 
 
 class Game
