@@ -17,19 +17,44 @@ namespace Core
 	void setConsole();
 }
 
-class Window
+
+class AbsWindow
+{
+public:
+	virtual void show() const = 0;
+	virtual void modificate(std::vector<Object*>& objects) = 0;
+	virtual void show_start_logo() = 0;
+	virtual void show_gameover_logo() = 0;
+	virtual void show_end_logo() = 0;
+};
+
+class Window : public AbsWindow
 {
 public:
 	Window();//work with file
 public:
-	void show() const;
+	void show() const override;
 	void init();
-	void modificate(std::vector<Object*> & objects);
-	void show_start_logo();
-	void show_gameover_logo();
-	void show_end_logo();
+	void modificate(std::vector<Object*> & objects) override;
+	void show_start_logo() override;
+	void show_gameover_logo() override;
+	void show_end_logo() override;
 public:
 	char win_arr[HEIGHT][WEIGHT];
 	char clean_arr[HEIGHT][WEIGHT];
 };
 
+
+
+/*
+class SFML : public AbsWindow
+{
+public:
+	void show() const override;
+	void init();
+	void modificate(std::vector<Object*>& objects) override;
+	void show_start_logo() override;
+	void show_gameover_logo() override;
+	void show_end_logo() override;
+};
+*/

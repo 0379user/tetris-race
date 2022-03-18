@@ -1,6 +1,7 @@
 #pragma once
 #include <conio.h> // _kbhit()  _getch()
 #include "Game.h"
+
  
 /*
 			LEFT = 0,
@@ -16,11 +17,15 @@
 
 namespace System
 {
-	class Input
+	
+	enum class state
 	{
-	public:
-
-		enum class event_key
+		GAME_RUN = 0,
+		MENU,
+		EXIT,
+		GAME_OVER
+	};
+	enum class event_key
 		{
 			LEFT = 0,
 			RIGHT,
@@ -30,45 +35,24 @@ namespace System
 			ESC,
 			ZERO
 		};
-		Input::event_key input()
-		{
-			if (_kbhit())
-			{
-				switch (_getch())
-				{
-				case 'a':   pressed_key = event_key::LEFT; break;
-				case 228:  pressed_key = event_key::LEFT;   break;
-				case 'd':  pressed_key = event_key::RIGHT;  break;
-				case 162:  pressed_key = event_key::RIGHT;  break;
+	static	event_key pressed_key = System::event_key::ZERO;
+	static state game_state = System::state::GAME_RUN;
+	Window win;
+	bool rend=true;
 
-				case 'w': pressed_key = event_key::UP;     break;
-				case 230: pressed_key = event_key::UP;     break;
-				case 's': pressed_key = event_key::DOWN;   break;
-				case 235: pressed_key = event_key::DOWN;   break;
+	//int level;
+	//int score;
+	//int alive_objects;
+	//std::string name;
+	float level_time;
+	float full_time;
+	std::chrono::steady_clock::time_point start_time, end_time; // from lib mytimer
+	std::chrono::duration<float> result_time;
 
-				case 13: pressed_key = event_key::ENTER;   break;
-				case 27: pressed_key = event_key::ESC;     break;
-				case ' ': break;
-				default:pressed_key = event_key::ZERO;
-					break;
-				}
-
-			}
-			return  pressed_key;
-		};
-	private:
-		event_key pressed_key;
-	};//class Input
-	
-	void render()
-	{
-	//show();
-	}
-	void update() 
-	{
-	//	logic();
-	//	input();
-	}
+	void input();
+	void logic();
+	void render();
+	void update();
 
 
 
@@ -77,82 +61,67 @@ namespace System
 
 }
 
-	//namespace system
-	
-namespace procedure_version
+///defenition
+ 
+namespace System
 {
-	//window
-	static char win_arr[HEIGHT][WEIGHT];
-	
-	void  init()
-	{
-
-		for (int i = 0; i < HEIGHT; i++)
-		{
-			for (int j = 0; j < WEIGHT; j++)
+void input()
+{
+			if (_kbhit())
 			{
-				win_arr[i][j] = ' ';
+				switch (_getch())
+				{
+				case 'a': pressed_key = event_key::LEFT;   break;
+				case 228: pressed_key = event_key::LEFT;   break;
+				case 'd': pressed_key = event_key::RIGHT;  break;
+				case 162: pressed_key = event_key::RIGHT;  break;
+
+				case 'w': pressed_key = event_key::UP;     break;
+				case 230: pressed_key = event_key::UP;     break;
+				case 's': pressed_key = event_key::DOWN;   break;
+				case 235: pressed_key = event_key::DOWN;   break;
+
+				case  13: pressed_key = event_key::ENTER;  break;
+				case  27: pressed_key = event_key::ESC;    break;
+				case ' ': System::game_state = System::state::EXIT; break;
+				default : pressed_key = event_key::ZERO;   break;
+				}
 			}
+};
+
+	void logic()
+	{
+		end_time = std::chrono::high_resolution_clock::now();
+		result_time = end_time - start_time;
+		full_time = result_time.count();
+		if (full_time > level_time)
+		{
+			//System::rend = true;
+		}
+		
+		if (full_time > 4.0)
+		{
+			start_time = end_time;
+			System::rend = true;
+			//score++;
 		}
 
 	}
-	
-	void show() 
+
+	void render()
 	{
-		system("cls");
-		for (int i = 0; i < HEIGHT; i++)
+		if (rend)
 		{
-			for (int j = 0; j < WEIGHT; j++)
-			{
-				std::cout << win_arr[i][j];
-			}
+			System::win.show();
 		}
-
-	};
-	
-
-	static 	event_key pressed_key = ZERO;
-
-	enum  event_key
+		rend = false;
+	}
+	void update()
 	{
-		LEFT = 0,
-		RIGHT,
-		UP,
-		DOWN,
-		ENTER,
-		ESC,
-		ZERO
-	};
+		//	logic();
+		//	input();
+	}
 
-	void input()
-	{
-		if (_kbhit())
-		{
-			switch (_getch())
-			{
-			case 'a':  pressed_key = event_key::LEFT;   break;
-			case 228:  pressed_key = event_key::LEFT;   break;
-			case 'd':  pressed_key = event_key::RIGHT;  break;
-			case 162:  pressed_key = event_key::RIGHT;  break;
-
-			case 'w': pressed_key = event_key::UP;     break;
-			case 230: pressed_key = event_key::UP;     break;
-			case 's': pressed_key = event_key::DOWN;   break;
-			case 235: pressed_key = event_key::DOWN;   break;
-
-			case 13: pressed_key = event_key::ENTER;   break;
-			case 27: pressed_key = event_key::ESC;     break;
-			case ' ': break;
-			default:pressed_key = event_key::ZERO;
-				break;
-			}
-
-		}
-		//return  pressed_key;
-	};
-	
-	void update(){}
-	void render(){}
 
 
 

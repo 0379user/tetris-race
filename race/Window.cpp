@@ -71,10 +71,16 @@ void Window::modificate(std::vector<Object*>  & objects)
 	{
 		if (el->is_live())
 		{
-			el->create(this);
+			//el->create(this);
+
+			win_arr[el->x]    [el->y]     = '*';
+			win_arr[el->x + 1][el->y - 1] = '*';
+			win_arr[el->x + 1][el->y]     = '*';
+			win_arr[el->x + 1][el->y + 1] = '*';
+			win_arr[el->x + 2][el->y - 1] = '*';
+			win_arr[el->x + 2][el->y + 1] = '*';
 		}
 	}
-	  
 }
 
 void Window::show_start_logo()

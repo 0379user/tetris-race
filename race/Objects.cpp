@@ -59,6 +59,7 @@ Dask_info::Dask_info(std::string s)
 	level = 0;
 }
 
+
 void Dask_info::create(Window* w)
 {
 	for (int i = 0, it = y+1; i < name.size(); i++, it++)
@@ -66,7 +67,7 @@ void Dask_info::create(Window* w)
 		w->win_arr[x][it]= name[i];
 	}
 	//score making
-	w->win_arr[x+1][y+1] = magic_return_char_from_int (score / 100);
+	w->win_arr[x+1][y+1]     = magic_return_char_from_int (score / 100);
 	w->win_arr[x + 1][y + 2] = magic_return_char_from_int(score % 100/10);
 	w->win_arr[x + 1][y + 3] = magic_return_char_from_int(score % 10);
 	//level

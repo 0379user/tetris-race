@@ -16,9 +16,24 @@
 // start and end game screen
  //
 
+
+void loop()
+{
+	Core::setConsole();
+	System::start_time = std::chrono::high_resolution_clock::now();
+	while (System::game_state==System::state::GAME_RUN)
+	{
+		System::render();
+		System::input();
+		System::logic();
+
+	}
+}
+
+
 int main()
 {
-#if 1
+#if 0
 	Core::setConsole();
 	Game game;
 	
@@ -50,6 +65,9 @@ int main()
 	system("pause");
 
 #endif
+
+	loop();
+
 
 	return 0;
 }
