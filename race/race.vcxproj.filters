@@ -24,7 +24,7 @@
     <ClCompile Include="Objects.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
+    <ClCompile Include="Update.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClInclude Include="Game.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
+    <ClInclude Include="Update.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

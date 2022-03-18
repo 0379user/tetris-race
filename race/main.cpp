@@ -4,7 +4,7 @@
 #include "Window.h"
 #include "Objects.h"
 #include "Game.h"
-#include "Input.h"
+#include "Update.h"
 
 //task
 //stack of objects
@@ -18,6 +18,7 @@
 
 int main()
 {
+#if 1
 	Core::setConsole();
 	Game game;
 	
@@ -47,5 +48,8 @@ int main()
 
 	}
 	system("pause");
+
+#endif
+
 	return 0;
 }

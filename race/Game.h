@@ -6,7 +6,7 @@
 class Window;
 class Object;
 class Car;
-//class Input;
+ 
 
 
 class Game
@@ -212,7 +212,7 @@ private:
 	}
 public:
 	enum class state
-	{ GAME_RUN = 0,
+	{   GAME_RUN = 0,
 		MENU, 
 		EXIT, 
 		GAME_OVER 
