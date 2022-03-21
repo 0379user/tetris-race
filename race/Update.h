@@ -56,7 +56,13 @@ namespace System
 
 
 
-
+	class Object
+	{
+	public:
+		bool is_live() { return live; }
+	private:
+		bool live;
+	};
 
 
 }
@@ -118,8 +124,8 @@ void input()
 	}
 	void update()
 	{
-		//	logic();
-		//	input();
+			logic();
+			input();
 	}
 
 

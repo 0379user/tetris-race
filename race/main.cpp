@@ -24,7 +24,7 @@ void loop()
 	while (System::game_state==System::state::GAME_RUN)
 	{
 		System::render();
-		System::input();
+		System::update();
 		System::logic();
 
 	}
